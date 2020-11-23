@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Button = props => {
     const { id, disabled, type } = props
     return <>
-        <button id={id} type={type} disabled={disabled}>{props.children}</button>
+        <button id={id} type={type} disabled={disabled} {...props}>{props.children}</button>
     </>
 };
 

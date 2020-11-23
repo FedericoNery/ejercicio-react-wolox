@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Renderiza el contenedor verificando que se encuentre la palabra inicio del NavBar', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const anchorInicio = screen.getByText(/Inicio/i);
+  expect(anchorInicio).toBeInTheDocument();
 });

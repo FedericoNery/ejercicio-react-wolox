@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Input = props => {
     const { id, name } = props
     return <>
-        <input type="text" id={id} name={name}></input>
+        <input type="text" id={id} name={name} {...props}></input>
     </>
 };
 

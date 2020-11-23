@@ -6,7 +6,7 @@ const Select = props => {
     const { id, name, options } = props
     return <>
         {/* <label for="cars">Choose a car:</label> */}
-        <select name={name} id={id}>
+        <select name={name} id={id} {...props}>
             {
                 options.length > 0 && options.map((item) => {
                 return <Option value={item.value} name={item.name} />
