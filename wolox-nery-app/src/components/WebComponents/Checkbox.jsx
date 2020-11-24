@@ -5,7 +5,7 @@ const Checkbox = props => {
     const { id, name, value, labelName } = props
     return <>
         <label for={id}>{labelName}</label>
-        <input type="checkbox" id={id} name={name} value={value} />        
+        <input type="checkbox" id={id} name={name} value={value} {...props} />        
     </>
 };
 

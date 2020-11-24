@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { getAllTechs } from '../services/TechsService';
 import FilterListPage from './FilterListPage';
-import Tech from './Tech';
 import { connect } from "react-redux"
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { setListTechs, updateFilter } from '../redux/actions/techsActions';
-import Checkbox from './WebComponents/Checkbox';
 
 const ListPage = props => {
-  const { setListTechs } = props
   const { list } = props
-  //const [listTechs, setListTechs] = useState([])
+  const { setListTechs } = props
+  const Listado = lazy(() => import('./ListTechs'));
 
   useEffect(() => {
     async function fetchData() {
@@ -33,12 +31,14 @@ const ListPage = props => {
   return <>
     ListPage
     <FilterListPage />
-    {list.length > 0 && list.map((item, index) => {
-      return <>
-        <Checkbox id={`${index}chkFavTech`} name={`${index}NameFavTech`} key={`${index}FavTech`}></Checkbox>
-        <Tech {...item} key={`${index}Tech`} />
-      </>
-    })}
+
+    {list ? (
+      <Suspense fallback={<p>Cargando...</p>}>
+        <Listado />
+      </Suspense>
+    ) : (
+        <p>Cargando...</p>
+      )}
   </>
 };
 
