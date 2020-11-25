@@ -5,7 +5,7 @@ import RegisterPage from './components/RegisterPage';
 import ListPage from './components/ListPage';
 import Header from './components/Header';
 
-function App() {
+const App = () => {
   return (<>
     <Header />
     <Router>

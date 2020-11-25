@@ -3,14 +3,16 @@ import { SIGNUP, UPDATE_FORM, SET_ERRORS, SET_REGISTERED_USER, VALIDATE_FORM } f
 const INITIAL_STATE = {
     formulario: {},
     errores: {},
-    usuarioRegistrado: null
+    usuarioRegistrado: null,
+    isLogged: false
 };
 
 const authenticationReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGNUP:
+            //TODO corregir action para evitar acceder a las props
             return {
-                ...state
+                ...state, usuarioRegistrado: action.values.token, isLogged: action.values.isLogged
             };
 
         case UPDATE_FORM:

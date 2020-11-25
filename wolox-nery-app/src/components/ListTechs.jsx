@@ -11,7 +11,6 @@ const ListTechs = props => {
   const { list, favouriteTechs } = props
 
   const onFavourite = async (e) => {
-    debugger
     const value = e.target.value
     const checked = e.target.checked
     let listaFavoritos = [...favouriteTechs]
@@ -22,12 +21,12 @@ const ListTechs = props => {
     else{
       listaFavoritos = [...favouriteTechs].filter(item => item !== value)
     }
-    debugger
+
     await updateFavouritesTech(listaFavoritos)
   }
 
   return <>
-    {list.length > 0 && list.map((item, index) => {
+    { list.map((item, index) => {
       return <>
         <Checkbox id={`${index}chkFavTech`} name={`${index}NameFavTech`} key={`${index}FavTech`} value={item.tech} checked={favouriteTechs.includes(item.tech)} onChange={onFavourite}></Checkbox>
         <Tech {...item} key={`${index}Tech`} />
