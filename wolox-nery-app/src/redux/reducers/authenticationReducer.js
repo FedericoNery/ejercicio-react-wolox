@@ -1,10 +1,11 @@
+import { getLocalStorageItem } from "../../configuration/localStorage";
 import { SIGNUP, UPDATE_FORM, SET_ERRORS, SET_REGISTERED_USER, VALIDATE_FORM } from "../types/authenticationTypes";
 
 const INITIAL_STATE = {
     formulario: {},
     errores: {},
-    usuarioRegistrado: null,
-    isLogged: false
+    usuarioRegistrado: getLocalStorageItem("usuarioRegistrado"),
+    isLogged: getLocalStorageItem("usuarioRegistrado") ? true : false
 };
 
 const authenticationReducer = (state = INITIAL_STATE, action) => {

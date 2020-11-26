@@ -9,11 +9,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators, compose } from 'redux'
 import { mapFormToSignUp, signup, validateFormSignUp } from '../services/AuthenticationService'
 import { withRouter } from 'react-router-dom'
-
+import LocalStorageHelper from '../configuration/localStorage'
 
 const RegisterPage = props => {
   const { updateForm, setErrors, signUp } = props
   const { formulario, errores, history } = props
+  
+  const storage = new LocalStorageHelper()
 
   const onChangeInput = async (e) => {
     e.preventDefault()
@@ -49,7 +51,11 @@ const RegisterPage = props => {
       if (esValidoElFormulario) {
         const valuesMapped = mapFormToSignUp(formulario)
         const response = await signup(valuesMapped)
-        signUp({...response.data, isLogged: true})
+        const datosAPersistir = {...response.data, isLogged: true}
+        signUp(datosAPersistir)
+        
+        storage.set("usuarioRegistrado", datosAPersistir)
+        
         history.push('/')
       }
     }

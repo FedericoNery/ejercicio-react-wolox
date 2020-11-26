@@ -5,10 +5,12 @@ import { connect } from "react-redux"
 import {bindActionCreators} from 'redux'
 import { setListTechs, updateFavouritesTech, updateFilter } from '../redux/actions/techsActions';
 import Checkbox from './WebComponents/Checkbox';
+import LocalStorageHelper from '../configuration/localStorage';
 
 const ListTechs = props => {
   const { setListTechs, updateFavouritesTech } = props
   const { list, favouriteTechs } = props
+  const storage = new LocalStorageHelper()
 
   const onFavourite = async (e) => {
     const value = e.target.value
@@ -23,6 +25,8 @@ const ListTechs = props => {
     }
 
     await updateFavouritesTech(listaFavoritos)
+    storage.set("favouriteTechs", listaFavoritos)
+
   }
 
   return <>
@@ -32,6 +36,7 @@ const ListTechs = props => {
         <Tech {...item} key={`${index}Tech`} />
       </>
     })}
+    <p>{list.length}</p>
   </>
 };
 
