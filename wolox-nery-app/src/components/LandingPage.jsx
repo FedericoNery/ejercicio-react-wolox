@@ -2,16 +2,30 @@ import React from 'react'
 import Footer from './Footer'
 import Hero from './Hero'
 import HeroTwitter from './HeroTwitter'
+import Beneficios from './Beneficios'
 
 const LandingPage = props => {
     return <>
-        <h1>Bienvenido a tu </h1>
-        <h1><strong>Entrevista técnica</strong> en</h1>
-        <h1>Wolox</h1>
-        <Hero />
-        <HeroTwitter />
-        <Footer />
+        <div className="flex-container header flex-flow-wrap">
+            <div className="flex-item align-left flex-up-to-down fl-1">
+                <h3 className="h3">Bienvenido a tu </h3>
+                <h3 className="h3"><strong>Entrevista técnica</strong> en</h3>
+                <h3 className="h3">Wolox</h3>
+            </div>
+            <div className="flex-item align-right flex-up-to-down fl-1">
+                <Hero />
+            </div>
+        </div>
+        <div className="flex-container header flex-flow-column">
+            <HeroTwitter />
+        </div>
+        <div className="flex-container header flex-flow-wrap">
+            <Beneficios />
+        </div>
+        <div className="flex-container header flex-flow-column">
+            <Footer />
+        </div>
     </>
-  };
-  
-  export default LandingPage;
+};
+
+export default LandingPage;

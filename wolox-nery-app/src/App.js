@@ -8,20 +8,20 @@ import PrivateRoute from './components/RoutesComponents/PrivateRoute'
 import PublicRoute from './components/RoutesComponents/PublicRoute';
 const App = () => {
   return (<>
-    <Header />
-    <Router>
-      <Switch>
-        <Route path="/list">
-          <PrivateRoute component={ListPage} />
-        </Route>
-        <Route path="/register">
-          <PublicRoute restricted={true} component={RegisterPage}/>
-        </Route>
-        <Route path="/">
-          <LandingPage />
-        </Route>
-      </Switch>
-    </Router>
+      <Header />
+      <Router>
+        <Switch>
+          <Route path="/list">
+            <PrivateRoute component={ListPage} />
+          </Route>
+          <Route path="/register">
+            <PublicRoute restricted={true} component={RegisterPage} />
+          </Route>
+          <Route path="/">
+            <LandingPage />
+          </Route>
+        </Switch>
+      </Router>
   </>
   );
 }
