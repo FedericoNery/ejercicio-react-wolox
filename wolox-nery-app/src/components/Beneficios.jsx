@@ -10,7 +10,7 @@ import WorkshopsIcon from './icons/WorkshopsIcon'
 const Beneficios = props => {
     return <>
         <div className="flex-item align-center flex-auto">
-            <h4>Entre los beneficios que ofrecemos se encuentran ;)</h4>
+            <h4>Entre los beneficios que ofrecemos se encuentran <span className="celeste">;)</span></h4>
         </div>
         <div className="flex-container align-center flex-auto">
             <IconWithLabel icon={<HourIcon />} text="Flexibilidad horaria" />

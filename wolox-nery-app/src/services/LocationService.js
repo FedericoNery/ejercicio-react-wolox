@@ -1,7 +1,7 @@
 //TODO Ir a buscar a una api online o mockear una 
 
 const countries = [        
-    {value: 0, name: "--Seleccionar--"},
+    {value: 0, name: "-- Seleccionar país --"},
     {value: 1, name: "Argentina"},
     {value: 2, name: "Chile"},
     {value: 3, name: "Mexico"},
@@ -10,7 +10,7 @@ const countries = [
 ]
 
 const cities = [
-        { value: 0, idCountry: 0, name: "--Seleccionar--"},
+        { value: 0, idCountry: 0, name: "-- Seleccionar ciudad --"},
         { value: 1, idCountry: 1, name: "Buenos Aires" },
         { value: 2, idCountry: 1, name: "Córdoba" },
         { value: 3, idCountry: 1, name: "Mendoza" },
@@ -44,7 +44,7 @@ export const getCountries = () => {
 
 export const getCitiesByCountryId = (id) => {
     const resultado = cities.filter((item) => item.idCountry === id)
-    return [{ value: 0, idCountry: 0, name: "--Seleccionar--"},...resultado] 
+    return [{ value: 0, idCountry: 0, name: "-- Seleccionar ciudad--"},...resultado] 
 }
 
 //TODO ES EL MISMO CODIGO, GENERAR METODO GENERICO

@@ -16,30 +16,41 @@ const FilterListPage = props => {
 
     }, [])
 
-    const onNombreChange = async (e) =>  {
+    const onNombreChange = async (e) => {
         const nombreABuscar = e.target.value
         await updateFilter({ ...filter, nombre: nombreABuscar })
     }
 
     const onOrderNameChange = async () => {
-        if(filter.ordenarPorNombre === null){
+        if (filter.ordenarPorNombre === null) {
             await updateFilter({ ...filter, ordenarPorNombre: ORDER.ASCENDENTE })
         }
-        else{
+        else {
             await updateFilter({ ...filter, ordenarPorNombre: !filter.ordenarPorNombre })
         }
     }
 
     const onTypeChange = async (e) => {
-        await updateFilter({ ...filter, tipos: Array.from(e.target.selectedOptions, (item) => item.value) })
+        let tiposSeleccionados = Array.from(e.target.selectedOptions, (item) => item.value)
+
+        if(tiposSeleccionados.length === 1 && tiposSeleccionados.includes(""))
+            tiposSeleccionados = []
+
+        await updateFilter({ ...filter, tipos: tiposSeleccionados })
     }
 
     return <>
-        <Input id="inputFilterNombre" name="filterNombre" placeholder={"Nombre"} onChange={onNombreChange}></Input>
-        <Button id="inputFilterOrderNombre" onClick={onOrderNameChange} type="button">
-            {filter.ordenarPorNombre !== null ? filter.ordenarPorNombre === ORDER.ASCENDENTE ? "Ascendente" : "Descendente" : "ASC/DES"}
-        </Button>
-        <Select id="inputFilterTipo" name="filterTipo" multiple options={TYPES_TECHS} value={filter.tipos} onChange={onTypeChange} />
+        <div className="flex-item-fs">
+            <Input id="inputFilterNombre" name="filterNombre" placeholder="Nombre" onChange={onNombreChange}></Input>
+        </div>
+        <div className="flex-item-fs">
+            <Button id="inputFilterOrderNombre" className="btn info" onClick={onOrderNameChange} type="button">
+                {filter.ordenarPorNombre !== null ? filter.ordenarPorNombre === ORDER.ASCENDENTE ? "Ascendente" : "Descendente" : "ASC/DES"}
+            </Button>
+        </div>
+        <div className="flex-item-fs">
+            <Select id="inputFilterTipo" name="filterTipo" className="select-multiple" multiple options={TYPES_TECHS} value={filter.tipos} onChange={onTypeChange} />
+        </div>
     </>
 };
 

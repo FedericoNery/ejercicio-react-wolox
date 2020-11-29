@@ -17,7 +17,7 @@ export class Validator {
     }
 
     isLength(minLength, maxLength, msg) {
-        if (this.value.length < minLength || this.value.length > maxLength) {
+        if (!this.value || this.value.length < minLength || this.value.length > maxLength) {
             this.result.push(msg)
             this.hasErrors = true
         }
@@ -26,7 +26,7 @@ export class Validator {
     }
 
     isMinLength(minLength, msg) {
-        if(this.value.length < minLength){
+        if(!this.value || this.value.length < minLength){
             this.result.push(msg)
             this.hasErrors = true
         }
@@ -35,7 +35,7 @@ export class Validator {
     }
 
     isEmail(msg) {
-        if (!REGEX.EMAIL.test(this.value)) {
+        if (!this.value || !REGEX.EMAIL.test(this.value)) {
             this.result.push(msg)
             this.hasErrors = true
         }
@@ -44,7 +44,7 @@ export class Validator {
     }
 
     isNumeric(msg) {
-        if (!REGEX.NUMEROS.test(this.value)) {
+        if (!this.value || !REGEX.NUMEROS.test(this.value)) {
             this.result.push(msg)
             this.hasErrors = true
         }
@@ -53,7 +53,7 @@ export class Validator {
     }
 
     isAlphaNumeric(msg) {
-        if (!REGEX.ALFANUMERICA.test(this.value)) {
+        if (!this.value || !REGEX.ALFANUMERICA.test(this.value)) {
             this.result.push(msg)
             this.hasErrors = true
         }
@@ -71,7 +71,7 @@ export class Validator {
     }
 
     isEqualTo(otherValue, msg) {
-        if (this.value !== otherValue) {
+        if (!this.value || this.value !== otherValue) {
             this.result.push(msg)
             this.hasErrors = true
         }

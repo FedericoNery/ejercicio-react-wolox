@@ -10,11 +10,12 @@ import { bindActionCreators, compose } from 'redux'
 import { mapFormToSignUp, signup, validateFormSignUp } from '../services/AuthenticationService'
 import { withRouter } from 'react-router-dom'
 import LocalStorageHelper from '../configuration/localStorage'
+import FieldError from './WebComponents/FieldError'
 
 const RegisterPage = props => {
   const { updateForm, setErrors, signUp } = props
   const { formulario, errores, history } = props
-  
+
   const storage = new LocalStorageHelper()
 
   const onChangeInput = async (e) => {
@@ -51,35 +52,58 @@ const RegisterPage = props => {
       if (esValidoElFormulario) {
         const valuesMapped = mapFormToSignUp(formulario)
         const response = await signup(valuesMapped)
-        const datosAPersistir = {...response.data, isLogged: true}
+        const datosAPersistir = { ...response.data, isLogged: true }
         signUp(datosAPersistir)
-        
+
         storage.set("usuarioRegistrado", datosAPersistir)
-        
+
         history.push('/')
       }
     }
     catch (error) {
-      
+
     }
   }
 
-  return (<>
-    <>RegisterPage</>
-    <form onSubmit={onSubmit}>
-      Nombre: <Input id="inputNombre" name="nombre" maxlength="30" minlength="1" onChange={onChangeInput} required autocomplete="off"></Input><br></br>
-      Apellido: <Input id="inputApellido" name="apellido" maxlength="30" minlength="1" onChange={onChangeInput} required autocomplete="off"></Input><br></br>
-      Pa&iacute;s: <Select id="inputPais" name="pais" options={getCountries()} onChange={onChangePais} /><br></br>
-      {formulario.pais && <Select id="inputCiudad" name="ciudad" options={getCitiesByCountryId(formulario.pais)} onChange={onChangeCiudad} />}
-      Email: <Input id="inputEmail" name="email" type="email" onChange={onChangeInput} autocomplete="off" required></Input><br></br>
-      Tel&eacute;fono: <Input id="inputTelefono" name="telefono" type="tel" onChange={onChangeInput} required></Input><br></br>
-      Contrase&ntilde;a: <Input id="inputContrasenia" name="contrasenia" type="password" onChange={onChangeInput} required minlength="6" autocomplete="off"></Input><br></br>
-      Repetir Contrase&ntilde;a: <Input id="inputRepetirContrasenia" name="repetirContrasenia" type="password" onChange={onChangeInput} required minlength="6" autocomplete="off"></Input><br></br>
-      <Checkbox id="chkTerminosCondiciones" name="terminosCondiciones" labelName="Acepta términos y condiciones" onChange={onChecked} /><br></br>
-      <Button id="btnSubmit" type="submit">Enviar</Button>
-    </form>
+  return (<div className="flex-container flex-flow-wrap flex-content-center">
+    <div className="flex-item-fs">
+      <h3 className="h3">Register Page</h3>
+      <form onSubmit={onSubmit}>
+        <FieldError errors={errores.nombre}>
+          <Input id="inputNombre" name="nombre" maxlength="30" minlength="1" placeholder="Nombre" onChange={onChangeInput} autocomplete="off"></Input>
+        </FieldError>
+        <FieldError errors={errores.apellido}>
+          <Input id="inputApellido" name="apellido" maxlength="30" placeholder="Apellido" minlength="1" onChange={onChangeInput} autocomplete="off"></Input>
+        </FieldError>
+        <FieldError errors={errores.pais}>
+          <Select id="inputPais" name="pais" options={getCountries()} onChange={onChangePais} />
+        </FieldError>
+        <FieldError errors={errores.ciudad}>
+          {formulario.pais && <Select id="inputCiudad" name="ciudad" options={getCitiesByCountryId(formulario.pais)} onChange={onChangeCiudad} />}
+        </FieldError>
+        <FieldError errors={errores.email}>
+          <Input id="inputEmail" name="email" type="email" placeholder="Email" onChange={onChangeInput} autocomplete="off"></Input>
+        </FieldError>
+        <FieldError errors={errores.telefono}>
+          <Input id="inputTelefono" name="telefono" placeholder="Teléfono" type="tel" onChange={onChangeInput}></Input>
+        </FieldError>
+        <FieldError errors={errores.contrasenia}>
+          <Input id="inputContrasenia" name="contrasenia" placeholder="Contraseña" type="password" onChange={onChangeInput} minlength="6" autocomplete="off"></Input>
+        </FieldError>
+        <FieldError errors={errores.repetirContrasenia}>
+          <Input id="inputRepetirContrasenia" name="repetirContrasenia" placeholder="Repetir contraseña" type="password" onChange={onChangeInput} minlength="6" autocomplete="off"></Input>
+        </FieldError>
+        <FieldError errors={errores.terminosCondiciones}>
+          <Checkbox id="chkTerminosCondiciones" name="terminosCondiciones" labelName="Acepta términos y condiciones" onChange={onChecked} />
+        </FieldError>
+        <div className="flex-item-fs">
+          <Button className="btn btn-outlined info" id="btnSubmit" type="submit">Enviar</Button>
+        </div>
+      </form>
+    </div>
 
-  </>);
+  </div>
+  );
 };
 
 const mapStateToProps = state => {

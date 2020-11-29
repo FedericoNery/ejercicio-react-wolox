@@ -1,11 +1,11 @@
 import React from 'react'
 
 const FieldError = (props) => {
-    const { errorLabel } = props
+    const { errors } = props
 
     return (<>
         {
-            errorLabel && <label>{errorLabel}</label>
+            errors && errors.length > 0 && errors.map(item => <p className="label-error">{item}</p>)
         }
         {props.children}
     </>)

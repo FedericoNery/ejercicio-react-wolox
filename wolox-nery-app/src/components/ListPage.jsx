@@ -30,15 +30,19 @@ const ListPage = props => {
 
   return <>
     ListPage
-    <FilterListPage />
+    <div className="flex-container">
+        <FilterListPage />
+    </div>
+    <div className="flex-item-fs">
+      {list ? (
+        <Suspense fallback={<p>Cargando...</p>}>
+          <Listado />
+        </Suspense>
+      ) : (
+          <p>Cargando...</p>
+        )}
 
-    {list ? (
-      <Suspense fallback={<p>Cargando...</p>}>
-        <Listado />
-      </Suspense>
-    ) : (
-        <p>Cargando...</p>
-      )}
+    </div>
   </>
 };
 
