@@ -4,11 +4,17 @@ import FilterListPage from './FilterListPage';
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
 import { setListTechs, updateFilter } from '../redux/actions/techsActions';
+import Loader from './WebComponents/Loader';
 
 const ListPage = props => {
   const { list } = props
   const { setListTechs } = props
-  const Listado = lazy(() => import('./ListTechs'));
+  const Listado = lazy(() => {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(import('./ListTechs')), 400);
+    });
+  }
+  );
 
   useEffect(() => {
     async function fetchData() {
@@ -35,11 +41,10 @@ const ListPage = props => {
       </div>
     </div>
     <FilterListPage />
-    {list ?
-      <Suspense fallback={<p>Cargando...</p>}>
+    {list &&
+      <Suspense fallback={<Loader />}>
         <Listado />
       </Suspense>
-      : <p>Cargando...</p>
     }
   </>
 };
