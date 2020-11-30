@@ -14,7 +14,7 @@ const App = () => {
 
   return (<>
     <Header />
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <ErrorBoundary>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
