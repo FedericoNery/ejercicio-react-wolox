@@ -51,7 +51,7 @@ const RegisterPage = props => {
 
         setLocalStorageItem("usuarioRegistrado", datosAPersistir)
 
-        history.push('/')
+        history.push(`/`)
       }
     }
     catch (error) {
