@@ -10,10 +10,10 @@ const Header = props => {
             <LogoWolox />
         </div>
         <div className="flex-item align-right flex-up-to-down">
-            <a className="anchor-base" href="#inicio" onClick={"document.getElementById('inicio').scrollIntoView()"}>Inicio</a>
-            <a className="anchor-base" href="#beneficios" onClick={"document.getElementById('beneficios').scrollIntoView()"}>Beneficios</a>
-            {!isLogged && <a href="login" className="btn btn-outlined info-outline vertical-align-top"><strong>Login</strong></a>}
-            {!isLogged && <a href="register" className="btn btn-outlined info-outline vertical-align-top"><strong>Registrarse</strong></a>}
+            <a className="anchor-base" href={`${process.env.PUBLIC_URL}#inicio`} onClick={"document.getElementById('inicio').scrollIntoView()"}>Inicio</a>
+            <a className="anchor-base" href={`${process.env.PUBLIC_URL}#beneficios`} onClick={"document.getElementById('beneficios').scrollIntoView()"}>Beneficios</a>
+            {!isLogged && <a href={`${process.env.PUBLIC_URL}/login`} className="btn btn-outlined info-outline vertical-align-top"><strong>Login</strong></a>}
+            {!isLogged && <a href={`${process.env.PUBLIC_URL}/register`} className="btn btn-outlined info-outline vertical-align-top"><strong>Registrarse</strong></a>}
             {favouriteTechs.length > 0 && <p className="small-font">Favoritas <span class="badge">{favouriteTechs.length}</span></p>}
         </div>
     </div>
