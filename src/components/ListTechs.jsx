@@ -1,16 +1,14 @@
-import React, { useEffect, lazy, Suspense } from 'react'
-import { getAllTechs } from '../services/TechsService';
+import React from 'react'
 import Tech from './Tech';
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
 import { setListTechs, updateFavouritesTech, updateFilter } from '../redux/actions/techsActions';
 import Checkbox from './WebComponents/Checkbox';
-import LocalStorageHelper from '../configuration/localStorage';
+import { setLocalStorageItem } from '../configuration/localStorage';
 
 const ListTechs = props => {
-  const { setListTechs, updateFavouritesTech } = props
+  const { updateFavouritesTech } = props
   const { list, favouriteTechs } = props
-  const storage = new LocalStorageHelper()
 
   const onFavourite = async (e) => {
     const value = e.target.value
@@ -25,7 +23,7 @@ const ListTechs = props => {
     }
 
     await updateFavouritesTech(listaFavoritos)
-    storage.set("favouriteTechs", listaFavoritos)
+    setLocalStorageItem("favouriteTechs", listaFavoritos)
 
   }
 

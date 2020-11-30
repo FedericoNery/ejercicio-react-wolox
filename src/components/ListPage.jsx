@@ -16,7 +16,7 @@ const ListPage = props => {
       setListTechs(listTechs)
     }
     fetchData()
-  }, [])
+  }, [setListTechs])
 
   const fetchListTechs = async () => {
     try {

@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
 import LogoWolox from './Logos/LogoWolox';
 
 const Header = props => {
-    const { isLogged, favouriteTechs, history } = props
+    const { isLogged, favouriteTechs } = props
 
     return <div className="flex-container header flex-flow-wrap">
         <div className="flex-item fl-3 align-left flex-up-to-down" id="inicio">
