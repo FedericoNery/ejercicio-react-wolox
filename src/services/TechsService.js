@@ -35,7 +35,7 @@ export const applyFilter = (listTechs, filter) => {
     let listaConFiltroAplicado = listTechs
 
     if (nombre && nombre.length > 0)
-        listaConFiltroAplicado = [...listaConFiltroAplicado].filter(item => item.tech.toLowerCase().includes(nombre))
+        listaConFiltroAplicado = [...listaConFiltroAplicado].filter(item => item.tech.toLowerCase().includes(nombre.toLowerCase()))
 
     if (tipos && tipos.length > 0)
         listaConFiltroAplicado = [...listaConFiltroAplicado].filter(item => tipos.includes(item.type))
