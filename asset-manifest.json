@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ejercicio-react-wolox/static/css/main.6380f3f6.chunk.css",
-    "main.js": "/ejercicio-react-wolox/static/js/main.68cc9951.chunk.js",
-    "main.js.map": "/ejercicio-react-wolox/static/js/main.68cc9951.chunk.js.map",
+    "main.js": "/ejercicio-react-wolox/static/js/main.f002f2ca.chunk.js",
+    "main.js.map": "/ejercicio-react-wolox/static/js/main.f002f2ca.chunk.js.map",
     "runtime-main.js": "/ejercicio-react-wolox/static/js/runtime-main.d194f9c8.js",
     "runtime-main.js.map": "/ejercicio-react-wolox/static/js/runtime-main.d194f9c8.js.map",
     "static/js/2.bbfb9987.chunk.js": "/ejercicio-react-wolox/static/js/2.bbfb9987.chunk.js",
@@ -28,6 +28,6 @@
     "static/js/runtime-main.d194f9c8.js",
     "static/js/2.bbfb9987.chunk.js",
     "static/css/main.6380f3f6.chunk.css",
-    "static/js/main.68cc9951.chunk.js"
+    "static/js/main.f002f2ca.chunk.js"
   ]
 }
