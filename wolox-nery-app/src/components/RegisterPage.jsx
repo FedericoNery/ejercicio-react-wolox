@@ -25,18 +25,14 @@ const RegisterPage = props => {
     updateForm({ ...formulario, [fieldName]: fieldValue })
   }
 
-  const onChangePais = async (e) => {
+  const onChangeSelect = async (e) => {
     e.preventDefault()
     const fieldName = e.target.name
     const fieldValue = parseInt(e.target.value)
-    updateForm({ ...formulario, [fieldName]: fieldValue })
-  }
-
-  const onChangeCiudad = async (e) => {
-    e.preventDefault()
-    const fieldName = e.target.name
-    const fieldValue = parseInt(e.target.value)
-    updateForm({ ...formulario, [fieldName]: fieldValue })
+    if(fieldName === "pais" && fieldValue === 0)
+      updateForm({ ...formulario, "ciudad": null, [fieldName]: fieldValue })
+    else
+      updateForm({ ...formulario, [fieldName]: fieldValue })
   }
 
   const onChecked = async (e) => {
@@ -76,10 +72,10 @@ const RegisterPage = props => {
           <Input id="inputApellido" name="apellido" maxlength="30" placeholder="Apellido" minlength="1" onChange={onChangeInput} autocomplete="off"></Input>
         </FieldError>
         <FieldError errors={errores.pais}>
-          <Select id="inputPais" name="pais" options={getCountries()} onChange={onChangePais} />
+          <Select id="inputPais" name="pais" options={getCountries()} onChange={onChangeSelect} />
         </FieldError>
         <FieldError errors={errores.ciudad}>
-          {formulario.pais && <Select id="inputCiudad" name="ciudad" options={getCitiesByCountryId(formulario.pais)} onChange={onChangeCiudad} />}
+          {(formulario.pais !== 0 && formulario.pais) && <Select id="inputCiudad" name="ciudad" options={getCitiesByCountryId(formulario.pais)} onChange={onChangeSelect} />}
         </FieldError>
         <FieldError errors={errores.email}>
           <Input id="inputEmail" name="email" type="email" placeholder="Email" onChange={onChangeInput} autocomplete="off"></Input>
@@ -96,8 +92,8 @@ const RegisterPage = props => {
         <FieldError errors={errores.terminosCondiciones}>
           <Checkbox id="chkTerminosCondiciones" name="terminosCondiciones" labelName="Acepta términos y condiciones" onChange={onChecked} />
         </FieldError>
-        <div className="flex-item-fs">
-          <Button className="btn btn-outlined info" id="btnSubmit" type="submit">Enviar</Button>
+        <div className="flex-item-fs margin-top margin-bottom">
+          <Button className="btn-solid info" id="btnSubmit" type="submit">Enviar</Button>
         </div>
       </form>
     </div>

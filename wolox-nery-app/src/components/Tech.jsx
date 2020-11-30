@@ -23,7 +23,7 @@ const Tech = props => {
             <p>{type}</p>
         </div>
         <div className="flex-item-fs">
-            <img src={logo} alt={language} />
+            <img src={logo} alt={language} className="img-list-tech"/>
         </div>
     </>
 };

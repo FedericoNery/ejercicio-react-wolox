@@ -59,10 +59,14 @@ const ListTechs = props => {
     {list.map((item, index) => {
       return <div className="flex-container">
         <Tech {...item} key={`${index}Tech`} />
-        <Checkbox id={`${index}chkFavTech`} name={`${index}NameFavTech`} key={`${index}FavTech`} value={item.tech} checked={favouriteTechs.includes(item.tech)} onChange={onFavourite}></Checkbox>
+        <Checkbox id={`${index}chkFavTech`}
+          className="check-list-tech"
+          name={`${index}NameFavTech`} key={`${index}FavTech`} value={item.tech} checked={favouriteTechs.includes(item.tech)} onChange={onFavourite}></Checkbox>
       </div>
     })}
-    <p>{list.length}</p>
+    <div className="margin-left margin-bottom">
+      {list.length > 0 && <p className="small-font ">Encontradas <span class="badge">{list.length}</span></p>}
+    </div>
   </>
 };
 

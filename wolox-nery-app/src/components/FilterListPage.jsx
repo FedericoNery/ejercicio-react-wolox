@@ -44,7 +44,7 @@ const FilterListPage = props => {
             <Input id="inputFilterNombre" name="filterNombre" placeholder="Nombre" onChange={onNombreChange}></Input>
         </div>
         <div className="filter-list-item">
-            <Button id="inputFilterOrderNombre" className="btn info" onClick={onOrderNameChange} type="button">
+            <Button id="inputFilterOrderNombre" className="btn-asc-desc" onClick={onOrderNameChange} type="button">
                 {filter.ordenarPorNombre !== null ? filter.ordenarPorNombre === ORDER.ASCENDENTE ? "Ascendente" : "Descendente" : "ASC/DES"}
             </Button>
         </div>
