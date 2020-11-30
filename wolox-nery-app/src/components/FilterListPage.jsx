@@ -33,25 +33,26 @@ const FilterListPage = props => {
     const onTypeChange = async (e) => {
         let tiposSeleccionados = Array.from(e.target.selectedOptions, (item) => item.value)
 
-        if(tiposSeleccionados.length === 1 && tiposSeleccionados.includes(""))
+        if (tiposSeleccionados.length === 1 && tiposSeleccionados.includes(""))
             tiposSeleccionados = []
 
         await updateFilter({ ...filter, tipos: tiposSeleccionados })
     }
 
-    return <>
-        <div className="flex-item-fs">
+    return <div className="filter-list-container">
+        <div className="filter-list-item">
             <Input id="inputFilterNombre" name="filterNombre" placeholder="Nombre" onChange={onNombreChange}></Input>
         </div>
-        <div className="flex-item-fs">
+        <div className="filter-list-item">
             <Button id="inputFilterOrderNombre" className="btn info" onClick={onOrderNameChange} type="button">
                 {filter.ordenarPorNombre !== null ? filter.ordenarPorNombre === ORDER.ASCENDENTE ? "Ascendente" : "Descendente" : "ASC/DES"}
             </Button>
         </div>
-        <div className="flex-item-fs">
-            <Select id="inputFilterTipo" name="filterTipo" className="select-multiple" multiple options={TYPES_TECHS} value={filter.tipos} onChange={onTypeChange} />
+        <div className="filter-list-item">
+            <Select id="inputFilterTipo" name="filterTipo" className="select-multiple" multiple options={TYPES_TECHS} value={filter.tipos} onChange={onTypeChange} 
+            optionClassName=""/>
         </div>
-    </>
+    </div>
 };
 
 const mapStateToProps = state => {

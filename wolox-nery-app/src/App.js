@@ -1,28 +1,36 @@
 import './App.css';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import RegisterPage from './components/RegisterPage';
-import ListPage from './components/ListPage';
 import Header from './components/Header';
 import PrivateRoute from './components/RoutesComponents/PrivateRoute'
 import PublicRoute from './components/RoutesComponents/PublicRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 const App = () => {
+
+  const ListPage = React.lazy(() => import('./components/ListPage'));
+  const RegisterPage = React.lazy(() => import('./components/RegisterPage'));
+  const LandingPage = React.lazy(() => import('./components/LandingPage'));
+
+
   return (<>
-      <Header />
-      <Router>
-        <Switch>
-          <Route path="/list">
-            <PrivateRoute component={ListPage} />
-          </Route>
-          <Route path="/register">
-            <PublicRoute restricted={true} component={RegisterPage} />
-          </Route>
-          <Route path="/">
-            <LandingPage />
-          </Route>
-        </Switch>
-      </Router>
+    <Header />
+    <Router>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/list">
+              <PrivateRoute component={ListPage} />
+            </Route>
+            <Route path="/register">
+              <PublicRoute restricted={true} component={RegisterPage} />
+            </Route>
+            <Route path="/">
+              <LandingPage />
+            </Route>
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
+    </Router>
   </>
   );
 }

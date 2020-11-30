@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './configuration/store';
+import './assets/Fonts/Montserrat/Montserrat-Regular.ttf'
 
 ReactDOM.render(
   <Provider store={store}>

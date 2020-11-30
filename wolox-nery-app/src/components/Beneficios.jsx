@@ -8,9 +8,9 @@ import LaptopIcon from './icons/LaptopIcon'
 import WorkshopsIcon from './icons/WorkshopsIcon'
 
 const Beneficios = props => {
-    return <>
+    return <div className="flex-container flex-flow-wrap" id="beneficios">
         <div className="flex-item align-center flex-auto">
-            <h4>Entre los beneficios que ofrecemos se encuentran <span className="celeste">;)</span></h4>
+            <h4 className="h4">Entre los beneficios que ofrecemos se encuentran <strong><span className="celeste">;)</span></strong></h4>
         </div>
         <div className="flex-container align-center flex-auto">
             <IconWithLabel icon={<HourIcon />} text="Flexibilidad horaria" />
@@ -21,7 +21,7 @@ const Beneficios = props => {
             <IconWithLabel icon={<LaptopIcon />} text="Semana Remota" />
             <IconWithLabel icon={<BrainIcon />} text="Trabajar en últimas tecnologías" />
         </div>
-    </>
+    </div>
 };
 
 export default Beneficios;

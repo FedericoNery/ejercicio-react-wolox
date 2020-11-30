@@ -2,7 +2,7 @@ import React, { useEffect, lazy, Suspense } from 'react'
 import { getAllTechs } from '../services/TechsService';
 import Tech from './Tech';
 import { connect } from "react-redux"
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { setListTechs, updateFavouritesTech, updateFilter } from '../redux/actions/techsActions';
 import Checkbox from './WebComponents/Checkbox';
 import LocalStorageHelper from '../configuration/localStorage';
@@ -17,10 +17,10 @@ const ListTechs = props => {
     const checked = e.target.checked
     let listaFavoritos = [...favouriteTechs]
 
-    if(checked){
+    if (checked) {
       listaFavoritos.push(value)
     }
-    else{
+    else {
       listaFavoritos = [...favouriteTechs].filter(item => item !== value)
     }
 
@@ -30,11 +30,37 @@ const ListTechs = props => {
   }
 
   return <>
-    { list.map((item, index) => {
-      return <>
-        <Checkbox id={`${index}chkFavTech`} name={`${index}NameFavTech`} key={`${index}FavTech`} value={item.tech} checked={favouriteTechs.includes(item.tech)} onChange={onFavourite}></Checkbox>
+    <div className="flex-container">
+      <div className="flex-item-fs">
+        <p>Tecnolog&iacute;a</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>A&ntilde;o</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Autor</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Licencia</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Lenguaje</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Tipo</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Logo</p>
+      </div>
+      <div className="flex-item-fs">
+        <p>Favorito</p>
+      </div>
+    </div>
+    {list.map((item, index) => {
+      return <div className="flex-container">
         <Tech {...item} key={`${index}Tech`} />
-      </>
+        <Checkbox id={`${index}chkFavTech`} name={`${index}NameFavTech`} key={`${index}FavTech`} value={item.tech} checked={favouriteTechs.includes(item.tech)} onChange={onFavourite}></Checkbox>
+      </div>
     })}
     <p>{list.length}</p>
   </>
