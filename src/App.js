@@ -5,6 +5,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/RoutesComponents/PrivateRoute'
 import PublicRoute from './components/RoutesComponents/PublicRoute';
 import ErrorBoundary from './components/ErrorBoundary';
+import Loader from './components/WebComponents/Loader';
 const App = () => {
 
   const ListPage = React.lazy(() => import('./components/ListPage'));
@@ -14,9 +15,9 @@ const App = () => {
 
   return (<>
     <Header />
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={`${process.env.PUBLIC_URL}/`}>
       <ErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Switch>
             <Route path="/list">
               <PrivateRoute component={ListPage} />
