@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function getAxiosInstance() {
     const instance = axios.create({
-        baseURL: 'http://private-8e8921-woloxfrontendinverview.apiary-mock.com/',
+        baseURL: '',
         timeout: 1000,
         headers: { 'X-Custom-Header': 'foobar' }
     });
